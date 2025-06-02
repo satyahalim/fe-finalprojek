@@ -29,7 +29,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
       localStorage.setItem("name", userData.data.name);
 
       alert("Login sebagai user berhasil!");
-      return window.location.href = "/src/pages/user/dashboard-user.html";
+      return window.location.href = "/user/dashboard-user.html";
     }
 
     // Kalau gagal, coba login sebagai ADMIN
@@ -51,7 +51,7 @@ document.getElementById("loginForm").addEventListener("submit", async function (
       localStorage.setItem("name", adminData.data.name);
 
       alert("Login sebagai admin berhasil!");
-      return window.location.href = "/src/pages/admin/dashboard-admin.html";
+      return window.location.href = "/admin/dashboard-admin.html";
     }
 
     // Kalau dua-duanya gagal
