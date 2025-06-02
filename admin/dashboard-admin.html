@@ -15,7 +15,7 @@
   </style>
 </head>
 <script>
-  async function refreshAdminToken() {
+  /*async function refreshAdminToken() {
     try {
       const res = await fetch("https://projek-be-559917148272.us-central1.run.app/tokenadmin", {
         method: "GET",
@@ -34,7 +34,50 @@
   }
 
   // Panggil saat halaman dimuat
-  window.addEventListener("DOMContentLoaded", refreshAdminToken);
+  window.addEventListener("DOMContentLoaded", refreshAdminToken);*/
+async function refreshAdminToken() {
+  console.log("🔍 Starting token refresh...");
+  
+  try {
+    // Check if we have cookies/refresh token
+    console.log("🍪 Document cookies:", document.cookie);
+    
+    const res = await fetch("https://projek-be-559917148272.us-central1.run.app/tokenadmin", {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+
+    console.log("📡 Response status:", res.status);
+    console.log("📡 Response headers:", [...res.headers.entries()]);
+    
+    if (!res.ok) {
+      const errorText = await res.text();
+      console.error("❌ Response error:", errorText);
+      throw new Error(`HTTP ${res.status}: ${errorText}`);
+    }
+
+    const data = await res.json();
+    console.log("✅ Token refresh response:", data);
+    
+    localStorage.setItem("token", data.accessToken);
+    console.log("✅ New token stored");
+    
+  } catch (err) {
+    console.error("🔒 Token refresh detailed error:", err);
+    
+    // Don't redirect immediately - let's see what's happening
+    alert(`Token refresh failed: ${err.message}`);
+    
+    // Only redirect if it's actually a token issue, not a server error
+    if (err.message.includes('401') || err.message.includes('403')) {
+      localStorage.clear();
+      window.location.href = "../services/login.html";
+    }
+  }
+}  
 </script>
 <body>
 
