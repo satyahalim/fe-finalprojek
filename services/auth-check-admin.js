@@ -13,7 +13,8 @@
       }
     });
 
-    if (!res.ok) throw new Error("Token admin tidak valid.");
+    if (!res.ok) {
+      throw new Error("Token admin tidak valid.");}
     console.log("✅ Token admin valid.");
   } catch (err) {
     console.warn("Token admin invalid:", err);
