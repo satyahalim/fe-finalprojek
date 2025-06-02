@@ -28,7 +28,7 @@
   }
 })();
 
-(async function authCheckAdmin() {
+/*(async function authCheckAdmin() {
   const token = localStorage.getItem("token");
   if (!token) {
     alert("🚫 Anda belum login. Silakan login terlebih dahulu.");
@@ -51,4 +51,4 @@
     localStorage.clear();
     window.location.href = "../services/login.html";
   }
-})();
+})();*/
