@@ -12,7 +12,7 @@ document.getElementById("addEventForm").addEventListener("submit", async functio
 
   if (!token) {
     alert("❌ Anda belum login sebagai admin.");
-    return window.location.href = "/src/pages/services/login.html";
+    return window.location.href = "/services/login.html";
   }
 
   try {
